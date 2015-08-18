@@ -1,4 +1,4 @@
-Eclipse specific #
+# Eclipse specific #
 */.settings/
 .settings
 */bin/
@@ -8,6 +8,9 @@ Eclipse specific #
 .metadata/*
 /bin
 */Debug/
+
+# IntelliJ specific #
+*.idea
 
 # FRC Deploy #
 sysProps.xml
