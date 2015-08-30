@@ -26,8 +26,6 @@ public class LifterHelper {
 		DISABLED
 	};
 	
-	public State state = State.IDLE;
-	
 	/** PID Constants **/
 	public static final double PROPORTIONAL_CONSTANT = 1.2;
 	public static final double INTEGRAL_CONSTANT = 0.0;
@@ -52,19 +50,4 @@ public class LifterHelper {
 	/** Bounds on PID input values */
 	public static final double INPUT_RANGE = 9999;
 	public static final double ENCODER_MAX_PERIOD = 100;
-	
-	/** Victors to drive the lifter */
-	public Victor victor1;
-	public Victor victor2;
-	
-	/** PID Components */
-	Encoder encoder;
-	PIDController controller1;
-	PIDController controller2;
-	
-	/** Hall effect sensors for the elevator */
-	DigitalInput topSensor;
-	DigitalInput bottomSensor;
-	
-	double currentLevel;
 }

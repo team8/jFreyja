@@ -125,6 +125,8 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void update() {
+		debug();
+		
 		switch(state) {
 		case IDLE:
 			break;
