@@ -8,7 +8,15 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 import edu.wpi.first.wpilibj.Talon;
-
+ /**
+  * Drivetrain class, extends Subsystem
+  * Contains methods and constants pertaining to the drivetrain
+  * Operates the drivetrain using Joysticks or PID
+  * 
+  * Has encoders, a gyroscope, and uses talons for speed controllers
+  * @see Subsystem
+  *
+  */
 public class Drivetrain extends Subsystem {
 	/**
 	 * Keeps track of the State of the Drivetrain
@@ -21,7 +29,7 @@ public class Drivetrain extends Subsystem {
 	 * BRAKING - Used to automatically stop the robot
 	 * STOPPED - Used for testing, no code running
 	 */
-	enum State{
+	private enum State{
 		IDLE,
 		TELEOP,
 		AUTOMATED_DRIVE,
