@@ -21,17 +21,26 @@ public class Lifter extends Subsystem {
 	public State state = State.IDLE;
 
 	/** Victors to drive the lifter */
-	public Victor victor1;
-	public Victor victor2;
+	public Victor victor1 = new Victor(0); //numbers are for ports
+	public Victor victor2 = new Victor(1);
 	
 	/** PID Components */
-	protected Encoder encoder;
-	protected PIDController controller1;
-	protected PIDController controller2;
+	protected Encoder encoder = new Encoder(0, 1, false); //numbers are for ports
+	
+	protected PIDController controller1 = new PIDController(LifterHelper.PROPORTIONAL_CONSTANT, 
+															LifterHelper.INTEGRAL_CONSTANT, 
+															LifterHelper.DERIVATIVE_CONSTANT,
+															encoder, victor1);
+	
+	protected PIDController controller2 = new PIDController(LifterHelper.PROPORTIONAL_CONSTANT, 
+															LifterHelper.INTEGRAL_CONSTANT, 
+															LifterHelper.DERIVATIVE_CONSTANT,
+															encoder, victor1);
+	
 	
 	/** Hall effect sensors for the elevator */
-	protected DigitalInput topSensor;
-	protected DigitalInput bottomSensor;
+	protected DigitalInput topSensor = new DigitalInput(0); //numbers are for ports
+	protected DigitalInput bottomSensor = new DigitalInput(1);
 	
 	/** Stores the current level */
 	double currentLevel;
