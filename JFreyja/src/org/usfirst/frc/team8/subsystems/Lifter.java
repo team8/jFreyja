@@ -112,16 +112,16 @@ public class Lifter extends Subsystem {
 		setState(State.AUTOMATED);
 	}
 	
-	private void liftLevel(double liftAmount) {
+	public void liftLevel(double liftAmount) {
 		double newLevel = currentLevel + liftAmount;
 		setLevel(newLevel);
 	}
 	
-	private void zero() {
+	public void zero() {
 		setLevel(0);
 	}
 	
-	private void resetZero() {
+	public void resetZero() {
 		encoder.reset();
 	}
 	
