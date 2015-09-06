@@ -20,6 +20,10 @@ public class TeleopController {
 	private Joystick operatorStick;
 	
 	public TeleopController(Robot robot) {
+		driveStick = new Joystick(0); //numbers are port numbers
+		turnStick = new Joystick(1);
+		operatorStick = new Joystick(2);
+		
 		arm = robot.getArm();
 		drivetrain = robot.getDrivetrain();
 		lifter = robot.getLifter();
