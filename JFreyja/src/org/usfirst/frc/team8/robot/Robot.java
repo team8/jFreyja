@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        teleController.update();
+        updateControllers();
         updateSubsystems();
     }
     
@@ -59,7 +59,10 @@ public class Robot extends IterativeRobot {
     
     }    
     
-    public void 
+    public void updateControllers() {
+    	teleController.update();
+    	//autoController.update();
+    }
     
     public void updateSubsystems() {
     	//arm.update();
