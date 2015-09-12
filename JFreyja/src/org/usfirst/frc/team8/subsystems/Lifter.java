@@ -102,7 +102,7 @@ public class Lifter extends Subsystem {
 		return (state == State.IDLE);
 	}
 	
-	private void setVelocity(double velocity) {
+	public void setVelocity(double velocity) {
 		double computedVelocity = Math.min(
 				Math.max(velocity * LifterHelper.SPEED_SCALING, -LifterHelper.MAX_SPEED),
 				LifterHelper.MAX_SPEED);

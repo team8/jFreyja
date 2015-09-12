@@ -32,7 +32,7 @@ public class TeleopController {
 	
 	public void update() {
 		drivetrain.drive(turnStick.getX(), driveStick.getY());
-		lifter.liftLevel(operatorStick.getY());
+		lifter.setVelocity(operatorStick.getY());
 		
 		if(operatorStick.getTrigger()) {
 			//arm close/open stuff here
