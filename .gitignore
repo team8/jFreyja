@@ -8,7 +8,7 @@
 .metadata/*
 /bin
 */Debug/
-.classpath
+*.classpath
 
 # IntelliJ specific #
 *.idea
