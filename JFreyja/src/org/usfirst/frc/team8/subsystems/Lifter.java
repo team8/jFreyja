@@ -64,10 +64,10 @@ public class Lifter extends Subsystem {
 		}
 		
 		if(isBottomHit()) {
-			//setVelocity(LifterHelper.BOUNCE_SPEED);
+			setVelocity(LifterHelper.BOUNCE_SPEED);
 		}
 		else if(isTopHit()) {
-			//setVelocity(-LifterHelper.BOUNCE_SPEED);
+			setVelocity(-LifterHelper.BOUNCE_SPEED);
 		}
 	}
 
