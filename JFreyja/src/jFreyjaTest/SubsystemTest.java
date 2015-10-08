@@ -4,11 +4,17 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class SubsystemTest {
+public abstract class SubsystemTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+	public abstract void testInit();
 
+	@Test
+	public abstract void testUpdate();
+	
+	@Test
+	public abstract void testDisable();
+	
+	@Test
+	public abstract void testIdle();
 }
