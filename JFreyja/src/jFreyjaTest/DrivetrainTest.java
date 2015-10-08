@@ -1,27 +1,28 @@
 package jFreyjaTest;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import org.usfirst.frc.team8.subsystems.*;
 
 public class DrivetrainTest extends SubsystemTest {
 
 	@Override
 	public void testInit() {
-		// TODO Auto-generated method stub
-		
+	//	Drivetrain d1 = new Drivetrain();
+	//	d1.init();
 	}
 
 	@Override
 	public void testUpdate() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void testDisable() {
-		// TODO Auto-generated method stub
-		
+		Drivetrain d1 = new Drivetrain();
+		Drivetrain d2 = new Drivetrain();
+		d1.disable();
+		assertNotEquals(d2,d1);
 	}
 
 	@Override
