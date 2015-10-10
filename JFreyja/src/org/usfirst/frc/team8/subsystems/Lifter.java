@@ -3,11 +3,14 @@ package org.usfirst.frc.team8.subsystems;
 import org.usfirst.frc.team8.subsystems.LifterHelper;
 import org.usfirst.frc.team8.subsystems.LifterHelper.State;
 
+
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
+//import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
+//import edu.wpi.first.wpilibj.Victor;
+//import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
+
+import stubs.*;
 
 /**
  * Controls the lifter subsystem with PID or joysticks

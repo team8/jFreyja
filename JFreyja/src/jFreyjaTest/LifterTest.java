@@ -25,8 +25,6 @@ public class LifterTest extends SubsystemTest {
 	public void testIdle() {
 		Lifter l1 = new Lifter();
 		Lifter l2 = new Lifter();
-		l1.init();
-		l2.init();
 		l1.idle();
 		assertNotEquals(l2,l1);		
 	}
