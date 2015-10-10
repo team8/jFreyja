@@ -1,10 +1,12 @@
 package org.usfirst.frc.team8.subsystems;
 
+import org.usfirst.frc.team8.robot.Ports;
 import org.usfirst.frc.team8.subsystems.LifterHelper;
 import org.usfirst.frc.team8.subsystems.LifterHelper.State;
 
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 //import edu.wpi.first.wpilibj.Victor;
@@ -28,7 +30,7 @@ public class Lifter extends Subsystem {
 	public Victor victor2;
 	
 	/** PID Components */
-	protected Encoder encoder;
+	protected Encoder encoder = new Encoder(Ports.PORT_LIFTER_ENCODER_A, Ports.PORT_LIFTER_ENCODER_B, true);;
 	protected PIDController controller1;
 	protected PIDController controller2;
 	
