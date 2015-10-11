@@ -5,13 +5,11 @@ import org.usfirst.frc.team8.subsystems.LifterHelper;
 import org.usfirst.frc.team8.subsystems.LifterHelper.State;
 
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
+//import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
+//import edu.wpi.first.wpilibj.PIDController;
 //import edu.wpi.first.wpilibj.Victor;
-//import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
-
+import edu.wpi.first.wpilibj.PIDSource;
 import stubs.*;
 
 /**
@@ -26,17 +24,17 @@ public class Lifter extends Subsystem {
 	public State state = State.IDLE;
 
 	/** Victors to drive the lifter */
-	public Victor victor1;
-	public Victor victor2;
+	public Victor victor1 = new Victor();
+	public Victor victor2 = new Victor();
 	
 	/** PID Components */
-	protected Encoder encoder = new Encoder(Ports.PORT_LIFTER_ENCODER_A, Ports.PORT_LIFTER_ENCODER_B, true);;
-	protected PIDController controller1;
-	protected PIDController controller2;
+	protected Encoder encoder = new Encoder();
+	protected PIDController controller1 = new PIDController();
+	protected PIDController controller2 = new PIDController();
 	
 	/** Hall effect sensors for the elevator */
-	protected DigitalInput topSensor;
-	protected DigitalInput bottomSensor;
+	protected DigitalInput topSensor = new DigitalInput();
+	protected DigitalInput bottomSensor = new DigitalInput();
 	
 	/** Stores the current level */
 	double currentLevel;
@@ -44,12 +42,10 @@ public class Lifter extends Subsystem {
 	@Override
 	public void init() {
 		encoder.reset();
-		resetZero();
 	}
 
 	@Override
 	public void update() {
-		debug();
 		currentLevel = encoder.getDistance() / LifterHelper.LEVEL_HEIGHT;
 		
 		switch(state) {
@@ -85,7 +81,7 @@ public class Lifter extends Subsystem {
 
 	@Override
 	public void idle() {
-		encoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+		encoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kRate);
 		controller1.setSetpoint(0);
 		controller2.setSetpoint(0);
 		controller1.enable();
@@ -109,7 +105,7 @@ public class Lifter extends Subsystem {
 	
 	private void setLevel(double level) {
 		double setpoint = level * LifterHelper.LEVEL_HEIGHT;
-		encoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
+		encoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kDistance);
 		controller1.setSetpoint(setpoint);
 		controller1.setSetpoint(setpoint);
 		controller2.enable();
@@ -120,14 +116,6 @@ public class Lifter extends Subsystem {
 	private void liftLevel(double liftAmount) {
 		double newLevel = currentLevel + liftAmount;
 		setLevel(newLevel);
-	}
-	
-	private void zero() {
-		setLevel(0);
-	}
-	
-	private void resetZero() {
-		encoder.reset();
 	}
 	
 	private void setState(State state) {
@@ -143,9 +131,5 @@ public class Lifter extends Subsystem {
 	
 	private boolean isTopHit() {
 		return topSensor.get();
-	}
-	
-	private void debug() {
-		System.out.println("Lifter Debug");
 	}
 }

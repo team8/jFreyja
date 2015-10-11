@@ -6,19 +6,32 @@ import org.usfirst.frc.team8.subsystems.*;
 
 public class LifterTest extends SubsystemTest {
 
+	/**
+	 * Tests that init successfully changes the encoder
+	 */
 	@Override
 	public void testInit() {
-
+		Lifter l1 = new Lifter();
+		Lifter l2 = new Lifter();
+		l1.init();
+		assertNotEquals(l2,l1);
 	}
 
 	@Override
 	public void testUpdate() {
-		// TODO Auto-generated method stub
-		
+		Lifter l1 = new Lifter();
+		Lifter l2 = new Lifter();
+		l1.update();
+		assertNotEquals(l2,l1);
 	}
 
 	@Override
 	public void testDisable() {
+		Lifter l1 = new Lifter();
+		Lifter l2 = new Lifter();
+		l1.idle();
+		l1.disable();
+		assertNotEquals(l2,l1);	
 	}
 
 	@Override

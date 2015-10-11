@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 
 public class Encoder {
 	 public void reset() {}
-	 public void setPIDSourceParameter(stubs.PIDSourceParameter krate) {}
+	 public void setPIDSourceParameter(PIDSourceParameter krate) {}
 	 public double getDistance() {
 		 return 1.0;
 	 }
