@@ -1,6 +1,5 @@
 package org.usfirst.frc.team8.subsystems;
 
-import org.usfirst.frc.team8.robot.Ports;
 import org.usfirst.frc.team8.subsystems.LifterHelper;
 import org.usfirst.frc.team8.subsystems.LifterHelper.State;
 
@@ -101,21 +100,6 @@ public class Lifter extends Subsystem {
 		victor1.set(-computedVelocity);
 		victor2.set(-computedVelocity);
 		setState(State.TELEOP);
-	}
-	
-	private void setLevel(double level) {
-		double setpoint = level * LifterHelper.LEVEL_HEIGHT;
-		encoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kDistance);
-		controller1.setSetpoint(setpoint);
-		controller1.setSetpoint(setpoint);
-		controller2.enable();
-		controller2.enable();
-		setState(State.AUTOMATED);
-	}
-	
-	private void liftLevel(double liftAmount) {
-		double newLevel = currentLevel + liftAmount;
-		setLevel(newLevel);
 	}
 	
 	private void setState(State state) {

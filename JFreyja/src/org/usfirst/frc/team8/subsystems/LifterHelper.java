@@ -1,10 +1,5 @@
 package org.usfirst.frc.team8.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.Victor;
-
 /**
  * Helper class for the Lifter subsystem
  * @author Nihar
