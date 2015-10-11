@@ -8,13 +8,14 @@ public class DrivetrainTest extends SubsystemTest {
 
 	@Override
 	public void testInit() {
-	//	Drivetrain d1 = new Drivetrain();
-	//	d1.init();
+		Drivetrain d1 = new Drivetrain();
+		d1.init();
 	}
 
 	@Override
 	public void testUpdate() {
-		
+		Drivetrain d1 = new Drivetrain();
+		d1.update();
 	}
 
 	@Override

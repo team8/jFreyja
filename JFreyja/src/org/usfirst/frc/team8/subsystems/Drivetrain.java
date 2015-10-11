@@ -2,12 +2,14 @@ package org.usfirst.frc.team8.subsystems;
 
 import org.usfirst.frc.team8.robot.Ports;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
-import edu.wpi.first.wpilibj.PIDController;
+//import edu.wpi.first.wpilibj.Encoder;
+//import edu.wpi.first.wpilibj.Gyro;
+//import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
-import edu.wpi.first.wpilibj.Talon;
+//import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
+//import edu.wpi.first.wpilibj.Talon;
+import stubs.*;
+
  /**
   * Drivetrain class, extends Subsystem
   * Contains methods and constants pertaining to the drivetrain
