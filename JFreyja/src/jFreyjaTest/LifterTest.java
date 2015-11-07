@@ -14,7 +14,7 @@ public class LifterTest extends SubsystemTest {
 		Lifter l1 = new Lifter();
 		Lifter l2 = new Lifter();
 		l1.init();
-		assertNotEquals(l1,l1);
+		assertNotEquals(l2,l1);
 	}
 
 	@Override
