@@ -74,9 +74,12 @@ public class Drivetrain extends Subsystem {
 	//Talons
 	Talon leftTalon1 = new Talon(Ports.PORT_DRIVETRAIN_TALON_LEFT_FRONT);
 	Talon leftTalon2 = new Talon(Ports.PORT_DRIVETRAIN_TALON_LEFT_BACK);
+	Talon leftTalon3 = new Talon(Ports.PORT_DRIVETRAIN_TALON_LEFT_MID);
+	
 	Talon rightTalon1 = new Talon(Ports.PORT_DRIVETRAIN_TALON_RIGHT_FRONT);
 	Talon rightTalon2 = new Talon(Ports.PORT_DRIVETRAIN_TALON_RIGHT_BACK);
-
+	Talon rightTalon3 = new Talon(Ports.PORT_DRIVETRAIN_TALON_RIGHT_MID);
+	
 	//Sensors
 	Gyro gyroscope = new Gyro(Ports.PORT_GYROSCOPE);
 	
@@ -92,11 +95,11 @@ public class Drivetrain extends Subsystem {
 	
 	PIDController leftDriveController1 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, leftTalon1);
 	PIDController leftDriveController2 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, leftTalon2);
-	PIDController rightDriveController1 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, rightTalon1);
-	PIDController rightDriveController2 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, rightTalon2);	
-	
+	PIDController rightDriveController1 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, rightEncoder, rightTalon1);
+	PIDController rightDriveController2 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, rightEncoder, rightTalon2);	
+	PIDController leftDriveController3 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, leftTalon3);
+	PIDController rightDriveController3 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, rightEncoder, rightTalon3);
 	public Drivetrain() {
-		System.out.println("Drivetrain constructor called");
 		leftEncoder.setDistancePerPulse(LEFT_DPP);
 		rightEncoder.setDistancePerPulse(RIGHT_DPP);
 		leftEncoder.setMaxPeriod(ENCODER_MAX_PERIOD);
@@ -106,12 +109,16 @@ public class Drivetrain extends Subsystem {
 		leftDriveController2.setInputRange(-ENCODER_INPUT_RANGE, ENCODER_INPUT_RANGE);
 		leftDriveController1.setOutputRange(-ENCODER_DRIVE_OUTPUT_RANGE, ENCODER_DRIVE_OUTPUT_RANGE);
 		leftDriveController2.setOutputRange(-ENCODER_DRIVE_OUTPUT_RANGE, ENCODER_DRIVE_OUTPUT_RANGE);
+		leftDriveController3.setInputRange(-ENCODER_INPUT_RANGE, ENCODER_INPUT_RANGE);
+		leftDriveController3.setOutputRange(-ENCODER_DRIVE_OUTPUT_RANGE, ENCODER_DRIVE_OUTPUT_RANGE);
 		
 		rightDriveController1.setInputRange(-ENCODER_INPUT_RANGE, ENCODER_INPUT_RANGE);
 		rightDriveController2.setInputRange(-ENCODER_INPUT_RANGE, ENCODER_INPUT_RANGE);
 		rightDriveController1.setOutputRange(-ENCODER_DRIVE_OUTPUT_RANGE, ENCODER_DRIVE_OUTPUT_RANGE);
 		rightDriveController2.setOutputRange(-ENCODER_DRIVE_OUTPUT_RANGE, ENCODER_DRIVE_OUTPUT_RANGE);
-	
+		rightDriveController3.setOutputRange(-ENCODER_DRIVE_OUTPUT_RANGE, ENCODER_DRIVE_OUTPUT_RANGE);
+		rightDriveController3.setOutputRange(-ENCODER_DRIVE_OUTPUT_RANGE, ENCODER_DRIVE_OUTPUT_RANGE);
+		
 		leftGyroController1.setOutputRange(-ENCODER_GYRO_OUTPUT_RANGE, ENCODER_GYRO_OUTPUT_RANGE);
 		rightGyroController1.setOutputRange(-ENCODER_GYRO_OUTPUT_RANGE, ENCODER_GYRO_OUTPUT_RANGE);
 		leftGyroController2.setOutputRange(-ENCODER_GYRO_OUTPUT_RANGE, ENCODER_GYRO_OUTPUT_RANGE);
@@ -176,8 +183,10 @@ public class Drivetrain extends Subsystem {
 		
 		leftTalon1.set(-(scaledForward - scaledTurn));
 		leftTalon2.set(-(scaledForward - scaledTurn));
+		leftTalon3.set(-(scaledForward - scaledTurn));
 		rightTalon1.set(scaledForward + scaledTurn);
 		rightTalon2.set(scaledForward + scaledTurn);
+		rightTalon3.set(scaledForward + scaledTurn);
 	}
 	
 	public void driveDist(double distance) {
@@ -190,8 +199,10 @@ public class Drivetrain extends Subsystem {
 		
 		leftDriveController1.setSetpoint(distance);
 		leftDriveController2.setSetpoint(distance);
+		leftDriveController3.setSetpoint(distance);
 		rightDriveController1.setSetpoint(distance);
 		rightDriveController2.setSetpoint(distance);
+		rightDriveController3.setSetpoint(distance);
 		
 		enableDriveControllers();
 	}
@@ -222,8 +233,10 @@ public class Drivetrain extends Subsystem {
 		
 		leftDriveController1.setSetpoint(0);
 		leftDriveController2.setSetpoint(0);
+		leftDriveController3.setSetpoint(0);
 		rightDriveController1.setSetpoint(0);
 		rightDriveController2.setSetpoint(0);
+		rightDriveController3.setSetpoint(0);
 		
 		enableDriveControllers();
 	}
@@ -279,6 +292,8 @@ public class Drivetrain extends Subsystem {
 		leftDriveController2.enable();
 		rightDriveController1.enable();
 		rightDriveController2.enable();
+		leftDriveController3.enable();
+		rightDriveController3.enable();
 	}
 	/**
 	 * Disables all the PIDControllers
@@ -304,6 +319,8 @@ public class Drivetrain extends Subsystem {
 		leftDriveController2.disable();
 		rightDriveController1.disable();
 		rightDriveController2.disable();
+		leftDriveController3.disable();
+		rightDriveController3.disable();
 	}
 	/**
 	 * Prints general debugging information

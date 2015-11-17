@@ -26,13 +26,13 @@ public class TeleopController {
 		
 		arm = robot.getArm();
 		drivetrain = robot.getDrivetrain();
-		lifter = robot.getLifter();
-		ramp = robot.getRamp();
+//		lifter = robot.getLifter();
+//		ramp = robot.getRamp();
 	}
 	
 	public void update() {
 		drivetrain.drive(turnStick.getX(), driveStick.getY());
-		lifter.setVelocity(operatorStick.getY());
+		//lifter.setVelocity(operatorStick.getY());
 		
 		if(operatorStick.getTrigger()) {
 			//arm close/open stuff here

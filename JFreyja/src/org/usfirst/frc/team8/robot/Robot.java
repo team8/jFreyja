@@ -20,7 +20,7 @@ public class Robot extends IterativeRobot {
 	
 	private Arm arm;
 	private Drivetrain drivetrain;
-	private Lifter lifter;
+	//private Lifter lifter;
 	private Ramp ramp;
 	
     /**
@@ -30,7 +30,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	arm = new Arm();
     	drivetrain = new Drivetrain();
-    	lifter = new Lifter();
+    	//lifter = new Lifter();
     	ramp = new Ramp();
     	
     	teleController = new TeleopController(this);
@@ -67,7 +67,7 @@ public class Robot extends IterativeRobot {
     public void updateSubsystems() {
     	//arm.update();
     	drivetrain.update();
-    	lifter.update();
+    	//lifter.update();
     	//ramp.update();
     }
     
@@ -79,11 +79,11 @@ public class Robot extends IterativeRobot {
     	return drivetrain;
     }
     
-    public Lifter getLifter() {
-    	return lifter;
-    }
+//    public Lifter getLifter() {
+//    	return lifter;
+//    }
     
-    public Ramp getRamp() {
-    	return ramp;
-    }
+//    public Ramp getRamp() {
+//    	return ramp;
+//    }
 }

@@ -26,7 +26,7 @@ public class Lifter extends Subsystem {
 	public Victor victor2 = new Victor(Ports.PORT_LIFTER_VICTOR_2);
 	
 	/** PID Components */
-	protected Encoder encoder = new Encoder(0, 1, false); //numbers are for ports
+	protected Encoder encoder = new Encoder(Ports.PORT_LIFTER_ENCODER_A, Ports.PORT_LIFTER_ENCODER_B, false); //numbers are for ports
 	
 	protected PIDController controller1 = new PIDController(LifterHelper.PROPORTIONAL_CONSTANT, 
 															LifterHelper.INTEGRAL_CONSTANT, 
@@ -40,8 +40,8 @@ public class Lifter extends Subsystem {
 	
 	
 	/** Hall effect sensors for the elevator */
-	protected DigitalInput topSensor = new DigitalInput(0); //numbers are for ports
-	protected DigitalInput bottomSensor = new DigitalInput(1);
+	protected DigitalInput topSensor = new DigitalInput(Ports.PORT_LIFTER_HALL_EFFECT_TOP); //numbers are for ports
+	protected DigitalInput bottomSensor = new DigitalInput(Ports.PORT_LIFTER_HALL_EFFECT_BOTTOM);
 	
 	/** Stores the current level */
 	double currentLevel;
