@@ -1,5 +1,6 @@
 package org.usfirst.frc.team8.subsystems;
 
+import org.usfirst.frc.team8.robot.Ports;
 import org.usfirst.frc.team8.subsystems.LifterHelper;
 import org.usfirst.frc.team8.subsystems.LifterHelper.State;
 
@@ -21,8 +22,8 @@ public class Lifter extends Subsystem {
 	public State state = State.IDLE;
 
 	/** Victors to drive the lifter */
-	public Victor victor1 = new Victor(0); //numbers are for ports
-	public Victor victor2 = new Victor(1);
+	public Victor victor1 = new Victor(Ports.PORT_LIFTER_VICTOR_1); //numbers are for ports
+	public Victor victor2 = new Victor(Ports.PORT_LIFTER_VICTOR_2);
 	
 	/** PID Components */
 	protected Encoder encoder = new Encoder(0, 1, false); //numbers are for ports
@@ -35,7 +36,7 @@ public class Lifter extends Subsystem {
 	protected PIDController controller2 = new PIDController(LifterHelper.PROPORTIONAL_CONSTANT, 
 															LifterHelper.INTEGRAL_CONSTANT, 
 															LifterHelper.DERIVATIVE_CONSTANT,
-															encoder, victor1);
+															encoder, victor2);
 	
 	
 	/** Hall effect sensors for the elevator */

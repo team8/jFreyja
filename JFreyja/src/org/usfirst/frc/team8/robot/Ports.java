@@ -11,7 +11,7 @@ public class Ports {
 	public static final int PORT_DRIVETRAIN_TALON_LEFT_FRONT = 3;
 	public static final int PORT_DRIVETRAIN_TALON_LEFT_BACK = 2;
 	public static final int PORT_DRIVETRAIN_TALON_RIGHT_FRONT = 1;
-	public static final int PORT_DRIVETRAIN_TALON_RIGHT_BACK = 0;
+	public static final int PORT_DRIVETRAIN_TALON_RIGHT_BACK = 4;
 
 	public static final int PORT_LIFTER_VICTOR_1 = 4;
 	public static final int PORT_LIFTER_VICTOR_2 = 5;
