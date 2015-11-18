@@ -14,8 +14,8 @@ public class Ports {
 	public static final int PORT_DRIVETRAIN_TALON_RIGHT_BACK = 2;
 	public static final int PORT_DRIVETRAIN_TALON_RIGHT_MID = 6;
 
-	public static final int PORT_LIFTER_VICTOR_1 = 5;
-	public static final int PORT_LIFTER_VICTOR_2 = 6;
+	public static final int PORT_LIFTER_VICTOR_1 = 4;
+	public static final int PORT_LIFTER_VICTOR_2 = 9;
 
 	public static final int PORT_ARM_SOLENOID_A = 7;
 	public static final int PORT_ARM_SOLENOID_B = 8;
@@ -30,7 +30,7 @@ public class Ports {
 	public static final int PORT_LIFTER_ENCODER_B = 5;
 	
 	/** Analog Input */
-	public static final int PORT_GYROSCOPE = 1;
+	public static final int PORT_GYROSCOPE = 6;
 	public static final int PORT_LIFTER_HALL_EFFECT_TOP = 9;
 	public static final int PORT_LIFTER_HALL_EFFECT_BOTTOM = 8;
 }
