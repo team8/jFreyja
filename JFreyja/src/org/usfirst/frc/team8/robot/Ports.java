@@ -22,7 +22,7 @@ public class Ports {
 
 	/** Digital Input/Output */
 	public static final int PORT_DRIVETRAIN_ENCODER_LEFT_A = 0;
-	public static final int PORT_DRIVETRAIN_ENCODER_LEFT_B = 1;
+	public static final int PORT_DRIVETRAIN_ENCODER_LEFT_B = 7;
 	public static final int PORT_DRIVETRAIN_ENCODER_RIGHT_A = 2;
 	public static final int PORT_DRIVETRAIN_ENCODER_RIGHT_B = 3;
 
@@ -30,7 +30,7 @@ public class Ports {
 	public static final int PORT_LIFTER_ENCODER_B = 5;
 	
 	/** Analog Input */
-	public static final int PORT_GYROSCOPE = 6;
+	public static final int PORT_GYROSCOPE = 1;
 	public static final int PORT_LIFTER_HALL_EFFECT_TOP = 9;
 	public static final int PORT_LIFTER_HALL_EFFECT_BOTTOM = 8;
 }
