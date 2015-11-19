@@ -10,10 +10,8 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class TeleopController {
 	
-	private Arm arm;
 	private Drivetrain drivetrain;
 	private Lifter lifter;
-	private Ramp ramp;
 	
 	private Joystick driveStick;
 	private Joystick turnStick;
@@ -24,20 +22,12 @@ public class TeleopController {
 		turnStick = new Joystick(1);
 		operatorStick = new Joystick(2);
 		
-		arm = robot.getArm();
 		drivetrain = robot.getDrivetrain();
-//		lifter = robot.getLifter();
-//		ramp = robot.getRamp();
+		lifter = robot.getLifter();
 	}
 	
 	public void update() {
 		drivetrain.drive(turnStick.getX(), driveStick.getY());
-		//lifter.setVelocity(operatorStick.getY());
-		
-		if(operatorStick.getTrigger()) {
-			//arm close/open stuff here
-		}
-		
-		//Buttons and stuff here
+		lifter.setVelocity(operatorStick.getY());
 	}
 }

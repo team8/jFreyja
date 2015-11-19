@@ -107,8 +107,8 @@ public class Lifter extends Subsystem {
 		double computedVelocity = Math.min(
 				Math.max(velocity * LifterHelper.SPEED_SCALING, -LifterHelper.MAX_SPEED),
 				LifterHelper.MAX_SPEED);
-		victor1.set(-computedVelocity);
-		victor2.set(-computedVelocity);
+		victor1.set(computedVelocity);
+		victor2.set(computedVelocity);
 		setState(State.TELEOP);
 	}
 	
