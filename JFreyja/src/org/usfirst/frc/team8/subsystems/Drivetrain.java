@@ -88,13 +88,13 @@ public class Drivetrain extends Subsystem {
 	//PID Controllers
 	PIDController leftGyroController1 = new PIDController(GYRO_PROPORTIONAL, GYRO_INTEGRAL, GYRO_DERIVATIVE, gyroscope, leftTalon1);
 	PIDController leftGyroController2 = new PIDController(GYRO_PROPORTIONAL, GYRO_INTEGRAL, GYRO_DERIVATIVE, gyroscope, leftTalon2);
-	PIDController rightGyroController1 = new PIDController(GYRO_PROPORTIONAL, GYRO_INTEGRAL, GYRO_DERIVATIVE, gyroscope, rightTalon1);
-	PIDController rightGyroController2 = new PIDController(GYRO_PROPORTIONAL, GYRO_INTEGRAL, GYRO_DERIVATIVE, gyroscope, rightTalon2);
+	PIDController rightGyroController1 = new PIDController(-GYRO_PROPORTIONAL, -GYRO_INTEGRAL, -GYRO_DERIVATIVE, gyroscope, rightTalon1);
+	PIDController rightGyroController2 = new PIDController(-GYRO_PROPORTIONAL, -GYRO_INTEGRAL, -GYRO_DERIVATIVE, gyroscope, rightTalon2);
 	
 	PIDController leftDriveController1 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, leftTalon1);
 	PIDController leftDriveController2 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, leftTalon2);
-	PIDController rightDriveController1 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, rightEncoder, rightTalon1);
-	PIDController rightDriveController2 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, rightEncoder, rightTalon2);	
+	PIDController rightDriveController1 = new PIDController(-DRIVE_PROPORTIONAL, -DRIVE_INTEGRAL, -DRIVE_DERIVATIVE, rightEncoder, rightTalon1);
+	PIDController rightDriveController2 = new PIDController(-DRIVE_PROPORTIONAL, -DRIVE_INTEGRAL, -DRIVE_DERIVATIVE, rightEncoder, rightTalon2);	
 	public Drivetrain() {
 		leftEncoder.setDistancePerPulse(LEFT_DPP);
 		rightEncoder.setDistancePerPulse(RIGHT_DPP);

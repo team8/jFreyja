@@ -34,7 +34,7 @@ public class TeleopController {
 		lifter.setVelocity(operatorStick.getY());
 		
 		if(driveStick.getTrigger()) {
-			drivetrain.driveDist(10);
+			drivetrain.driveDist(100);
 		}
 		
 		//Button controls	
