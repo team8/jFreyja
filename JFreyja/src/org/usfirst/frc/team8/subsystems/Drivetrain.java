@@ -245,7 +245,7 @@ public class Drivetrain extends Subsystem {
 	 * Gets the maximum error of the drive PIDControllers
 	 * @return the error of the drive PIDControllers
 	 */
-	private double driveControllerError() {
+	public double driveControllerError() {
 		double maxLeftError = Math.max(leftDriveController1.getError(), leftDriveController2.getError());
 		double maxRightError = Math.max(rightDriveController1.getError(), rightDriveController2.getError());
 
@@ -255,7 +255,7 @@ public class Drivetrain extends Subsystem {
 	 * Gets the maximum error of the gyro PIDControllers
 	 * @return the error of the gyro PIDControllers
 	 */
-	private double gyroControllerError() {
+	public double gyroControllerError() {
 		double maxLeftError = Math.max(leftGyroController1.getError(), leftGyroController2.getError());
 		double maxRightError = Math.max(rightGyroController1.getError(), rightGyroController2.getError());
 
