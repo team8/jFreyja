@@ -33,9 +33,13 @@ public class TeleopController {
 		//Lifter joystick controls
 		lifter.setVelocity(operatorStick.getY());
 		
-		//Button controls	
-		if(drivetrain.isIdle() && driveStick.getTrigger()) {
+		if(driveStick.getTrigger()) {
 			drivetrain.driveDist(10);
+		}
+		
+		//Button controls	
+		if(drivetrain.driveControllerError() < 1) {
+			drivetrain.idle();
 		}
 	}
 }
