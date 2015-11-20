@@ -27,7 +27,15 @@ public class TeleopController {
 	}
 	
 	public void update() {
+		//Drivetrain joystick controls
 		drivetrain.drive(turnStick.getX(), driveStick.getY());
+		
+		//Lifter joystick controls
 		lifter.setVelocity(operatorStick.getY());
+		
+		//Button controls	
+		if(drivetrain.isIdle() && driveStick.getTrigger()) {
+			drivetrain.driveDist(10);
+		}
 	}
 }
