@@ -17,6 +17,8 @@ public class TeleopController {
 	private Joystick turnStick;
 	private Joystick operatorStick;
 	
+	private boolean drivetrainTriggerPressed;
+	
 	public TeleopController(Robot robot) {
 		driveStick = new Joystick(0); //numbers are port numbers
 		turnStick = new Joystick(1);
@@ -24,22 +26,31 @@ public class TeleopController {
 		
 		drivetrain = robot.getDrivetrain();
 		lifter = robot.getLifter();
+		
+		boolean drivetrainTriggerPressed = false;
 	}
 	
 	public void update() {
-		//Drivetrain joystick controls
-		drivetrain.drive(turnStick.getX(), driveStick.getY());
+		//if pid not going on
+		if(drivetrainTriggerPressed == false) {
+			//Drivetrain joystick controls
+			drivetrain.drive(turnStick.getX(), driveStick.getY());
+		}
+		
+		//call pid of trigger pressed
+		if(driveStick.getTrigger()) {
+			drivetrainTriggerPressed = true;
+			drivetrain.driveDist(100);
+		}
+		
+		//when the pid is finished
+		if(drivetrainTriggerPressed && drivetrain.driveControllerError() < 1) {
+			drivetrainTriggerPressed = false;
+		}
 		
 		//Lifter joystick controls
 		lifter.setVelocity(operatorStick.getY());
 		
-		if(driveStick.getTrigger()) {
-			drivetrain.driveDist(100);
-		}
-		
-		//Button controls	
-		if(drivetrain.driveControllerError() < 1) {
-			drivetrain.idle();
-		}
+
 	}
 }
