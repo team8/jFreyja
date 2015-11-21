@@ -50,8 +50,8 @@ public class Drivetrain extends Subsystem {
 	public static final double GYRO_DERIVATIVE = 0.1;
 
 	//Encoder constants
-	public static final double RIGHT_DPP = 0.1545595;
-	public static final double LEFT_DPP = 0.1577287;
+	public static final double RIGHT_DPP = 0.0260846883;
+	public static final double LEFT_DPP = 0.0257091439;
 	public static final double ENCODER_INPUT_RANGE = 999;
 	public static final double ENCODER_DRIVE_OUTPUT_RANGE = 999;
 	public static final double ENCODER_GYRO_OUTPUT_RANGE = 999;
