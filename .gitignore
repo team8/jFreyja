@@ -1,0 +1,49 @@
+# Eclipse specific #
+*/.settings/
+.settings
+*/bin/
+*/build/
+*/resources/
+*.txt
+.metadata/*
+/bin
+*/Debug/
+
+# IntelliJ specific #
+*.idea
+
+# FRC Deploy #
+sysProps.xml
+
+# Mac OS X folder config#
+.DS_Store
+.DS_Store/
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
