@@ -10,20 +10,25 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class Robot extends IterativeRobot {
 
+	//The drivetrain used
 	private Drivetrain drivetrain;
 	
-	private FlightStick joystick;
+	//The joystick used
+	private FlightStick joystick = Hardware.HumanInterfaceDevices.logitechAttack3D(0);
 	
+	//The motors, these are used in the drivetrain
 	private Motor leftBackMotor = Hardware.Motors.talon(0);
 	private Motor leftFrontMotor = Hardware.Motors.talon(0);
 	private Motor rightBackMotor = Hardware.Motors.talon(0);
 	private Motor rightFrontMotor = Hardware.Motors.talon(0);
 	
+	//merging the motors on each side
 	private Motor left = Motor.compose(leftBackMotor, leftFrontMotor);
 	private Motor right = Motor.compose(rightBackMotor, rightFrontMotor);
 	
     @Override
     public void robotInit() {
+    	//passes the motors to be used to the drivetrain, along with a joystick
     	drivetrain = new Drivetrain(joystick, left, right);
     }
 
@@ -35,6 +40,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopPeriodic() {
+    	//constantly drives the robot according to joystick input
     	drivetrain.drive();
     }
 
