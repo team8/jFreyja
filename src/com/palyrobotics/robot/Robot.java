@@ -2,13 +2,19 @@
 package com.palyrobotics.robot;
 
 import org.strongback.Strongback;
+import org.strongback.components.ui.FlightStick;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class Robot extends IterativeRobot {
 
+	private Drivetrain drivetrain;
+	
+	private FlightStick joystick;
+	
     @Override
     public void robotInit() {
+    	drivetrain = new Drivetrain(joystick);
     }
 
     @Override
@@ -19,6 +25,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopPeriodic() {
+    	drivetrain.drive();
     }
 
     @Override
