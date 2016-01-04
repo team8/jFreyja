@@ -14,7 +14,8 @@ public class Robot extends IterativeRobot {
 	private Drivetrain drivetrain;
 	
 	//The joystick used
-	private FlightStick joystick = Hardware.HumanInterfaceDevices.logitechAttack3D(0);
+	private FlightStick turnstick = Hardware.HumanInterfaceDevices.logitechAttack3D(0);
+	private FlightStick driveStick = Hardware.HumanInterfaceDevices.logitechAttack3D(0);
 	
 	//The motors, these are used in the drivetrain
 	private Motor leftBackMotor = Hardware.Motors.talon(0);
@@ -29,7 +30,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
     	//passes the motors to be used to the drivetrain, along with a joystick
-    	drivetrain = new Drivetrain(joystick, left, right);
+    	drivetrain = new Drivetrain(turnstick, driveStick, left, right);
     }
 
     @Override
