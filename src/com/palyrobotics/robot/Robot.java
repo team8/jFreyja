@@ -14,14 +14,15 @@ public class Robot extends IterativeRobot {
 	private Drivetrain drivetrain;
 	
 	//The joystick used
-	private FlightStick turnstick = Hardware.HumanInterfaceDevices.logitechAttack3D(0);
-	private FlightStick driveStick = Hardware.HumanInterfaceDevices.logitechAttack3D(0);
+	private FlightStick operatorStick = Hardware.HumanInterfaceDevices.logitechAttack3D(0);
+	private FlightStick driveStick = Hardware.HumanInterfaceDevices.logitechAttack3D(1);
+	private FlightStick turnstick = Hardware.HumanInterfaceDevices.logitechAttack3D(2);
 	
 	//The motors, these are used in the drivetrain
-	private Motor leftBackMotor = Hardware.Motors.talon(0);
-	private Motor leftFrontMotor = Hardware.Motors.talon(0);
+	private Motor leftFrontMotor = Hardware.Motors.talon(3);
+	private Motor leftBackMotor = Hardware.Motors.talon(2);
+	private Motor rightFrontMotor = Hardware.Motors.talon(1);
 	private Motor rightBackMotor = Hardware.Motors.talon(0);
-	private Motor rightFrontMotor = Hardware.Motors.talon(0);
 	
 	//merging the motors on each side
 	private Motor left = Motor.compose(leftBackMotor, leftFrontMotor);
