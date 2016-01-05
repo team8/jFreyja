@@ -2,15 +2,17 @@ package com.palyrobotics.commands;
 
 import org.strongback.command.Command;
 import org.strongback.components.AngleSensor;
+import org.strongback.control.SoftwarePIDController;
+import org.strongback.hardware.Hardware;
+
 import com.palyrobotics.robot.Drivetrain;
 
 public class DriveDist extends Command {
-	@SuppressWarnings("unused")
 	private final Drivetrain drivetrain;
 	private final AngleSensor leftEncoder;
 	private final AngleSensor rightEncoder;
 	private final double targetDistance;
-//	private SoftwarePIDController controller;
+	private SoftwarePIDController controller;
 	
 	public DriveDist(Drivetrain drivetrain, AngleSensor leftEncoder, AngleSensor rightEncoder, double targetDistance, double tolerance) {
 		super(drivetrain);
@@ -24,8 +26,7 @@ public class DriveDist extends Command {
 
 	@Override
 	public boolean execute() {
-		//Sets the PID setpoint
-//		controller.withTarget(targetDistance);
+		drivetrain.driveDist(targetDistance);
 		return false;
 	}
 }
