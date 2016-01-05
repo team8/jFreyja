@@ -4,7 +4,10 @@ import org.strongback.components.AngleSensor;
 import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
 import org.strongback.control.SoftwarePIDController;
+import org.strongback.control.TalonController;
 import org.strongback.drive.TankDrive;
+import org.strongback.hardware.Hardware;
+
 import java.util.function.*;
 import static com.palyrobotics.robot.Constants.Drivetrain.*;
 
@@ -18,7 +21,10 @@ public class Drivetrain extends TankDrive {
 	private Motor right;
 	
 	//PIDController to be activated by commands when needed
-	private SoftwarePIDController controller;
+//	private SoftwarePIDController leftController;
+	
+	private TalonController leftController = Hardware.Controllers.talonController(0, PULSES_PER_DEGREE_LEFT, LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
+	private TalonController rightController = Hardware.Controllers.talonController(0, PULSES_PER_DEGREE_RIGHT, RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE)
 	
 	//Encoders on the drivetrain talons
 	private AngleSensor leftEncoder;
@@ -32,8 +38,9 @@ public class Drivetrain extends TankDrive {
 		this.turnStick = turnStick;
 		this.driveStick = driveStick;
 		
-//		this.controller = new SoftwarePIDController(new DoubleSupplier(leftEncoder, rightEncoder), );
-		this.controller.withInputRange(-500, 500).withTolerance(PID_TOLERANCE);
+//		this.leftController = new SoftwarePIDController(() -> leftEncoder.getAngle(), (leftEncoder.getAngle()) -> left.setSpeed());
+		this.leftController.withInputRange(MIN_PID_INPUT, MAX_PID_INPUT).withTolerance(PID_TOLERANCE);
+		
 	}
 	
 	//uses cheesy drive(1 joystick forward/backward, 1 joystick turning) to drive
