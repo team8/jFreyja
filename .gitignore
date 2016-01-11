@@ -1,6 +1,7 @@
 # Only allow Strongback/WPI build.xml #
-!build.xml
+
 *.xml
+!build.xml
 # Eclipse specific #
 */.settings/
 .settings
