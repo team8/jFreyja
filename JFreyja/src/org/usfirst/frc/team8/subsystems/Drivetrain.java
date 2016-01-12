@@ -3,10 +3,9 @@ package org.usfirst.frc.team8.subsystems;
 import org.usfirst.frc.team8.robot.Ports;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Talon;
  /**
   * Drivetrain class, extends Subsystem
@@ -79,7 +78,7 @@ public class Drivetrain extends Subsystem {
 	Talon rightTalon2 = new Talon(Ports.PORT_DRIVETRAIN_TALON_RIGHT_BACK);
 	
 	//Sensors
-	Gyro gyroscope = new Gyro(Ports.PORT_GYROSCOPE);
+	AnalogGyro gyroscope = new AnalogGyro(Ports.PORT_GYROSCOPE); //changed from Gyro to AnalogGyro in 2016 WPILib 
 	
 	//Encoders
 	Encoder leftEncoder = new Encoder(Ports.PORT_DRIVETRAIN_ENCODER_LEFT_A, Ports.PORT_DRIVETRAIN_ENCODER_LEFT_B, true);
@@ -184,8 +183,8 @@ public class Drivetrain extends Subsystem {
 		
 		disableGyroControllers();
 		
-		leftEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
-		rightEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
+		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		
 		leftDriveController1.setSetpoint(distance);
 		leftDriveController2.setSetpoint(distance);
@@ -200,8 +199,8 @@ public class Drivetrain extends Subsystem {
 		
 		disableDriveControllers();
 		
-		leftEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
-		rightEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
+		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		
 		leftGyroController1.setSetpoint(angle);
 		leftGyroController2.setSetpoint(angle);
@@ -216,8 +215,8 @@ public class Drivetrain extends Subsystem {
 		
 		disableGyroControllers();
 		
-		leftEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
-		rightEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+		leftEncoder.setPIDSourceType(PIDSourceType.kRate);
+		rightEncoder.setPIDSourceType(PIDSourceType.kRate);
 		
 		leftDriveController1.setSetpoint(0);
 		leftDriveController2.setSetpoint(0);
