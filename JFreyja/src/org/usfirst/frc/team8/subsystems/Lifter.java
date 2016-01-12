@@ -6,8 +6,8 @@ import org.usfirst.frc.team8.subsystems.LifterHelper.State;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 
 /**
  * Controls the lifter subsystem with PID or joysticks
@@ -80,7 +80,7 @@ public class Lifter extends Subsystem {
 
 	@Override
 	public void idle() {
-		encoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+		encoder.setPIDSourceType(PIDSourceType.kRate); //now setPIDSourceType in 2016 version 
 		controller1.setSetpoint(0);
 		controller2.setSetpoint(0);
 		controller1.enable();
@@ -104,7 +104,7 @@ public class Lifter extends Subsystem {
 	
 	private void setLevel(double level) {
 		double setpoint = level * LifterHelper.LEVEL_HEIGHT;
-		encoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
+		encoder.setPIDSourceType(PIDSourceType.kDisplacement); //uses kDisplacement instead of kDistance in 2016 version. 
 		controller1.setSetpoint(setpoint);
 		controller1.setSetpoint(setpoint);
 		controller2.enable();
