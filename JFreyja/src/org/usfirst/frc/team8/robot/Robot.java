@@ -1,6 +1,9 @@
 
 package org.usfirst.frc.team8.robot;
 
+import org.usfirst.frc.team8.controller.*;
+import org.usfirst.frc.team8.subsystems.*;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 /**
@@ -11,12 +14,27 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
+	private TeleopController teleController;
+	private AutonomousController autoController;
+	
+	private Arm arm;
+	private Drivetrain drivetrain;
+	private Lifter lifter;
+	private Ramp ramp;
+	
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-
+    	arm = new Arm();
+    	drivetrain = new Drivetrain();
+    	lifter = new Lifter();
+    	ramp = new Ramp();
+    	
+    	teleController = new TeleopController(this);
+    	autoController = new AutonomousController(this);
     }
 
     /**
@@ -30,7 +48,8 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+        updateControllers();
+        updateSubsystems();
     }
     
     /**
@@ -39,4 +58,32 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
     
     }    
+    
+    public void updateControllers() {
+    	teleController.update();
+    	//autoController.update();
+    }
+    
+    public void updateSubsystems() {
+    	//arm.update();
+    	drivetrain.update();
+    	lifter.update();
+    	//ramp.update();
+    }
+    
+    public Arm getArm() {
+    	return arm;
+    }
+    
+    public Drivetrain getDrivetrain() {
+    	return drivetrain;
+    }
+    
+    public Lifter getLifter() {
+    	return lifter;
+    }
+    
+    public Ramp getRamp() {
+    	return ramp;
+    }
 }

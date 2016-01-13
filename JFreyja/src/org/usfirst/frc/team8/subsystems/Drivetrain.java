@@ -50,8 +50,8 @@ public class Drivetrain extends Subsystem {
 	public static final double GYRO_DERIVATIVE = 0.1;
 
 	//Encoder constants
-	public static final double RIGHT_DPP = 0.1545595;
-	public static final double LEFT_DPP = 0.1577287;
+	public static final double RIGHT_DPP = 0.0260846883;
+	public static final double LEFT_DPP = 0.0257091439;
 	public static final double ENCODER_INPUT_RANGE = 999;
 	public static final double ENCODER_DRIVE_OUTPUT_RANGE = 999;
 	public static final double ENCODER_GYRO_OUTPUT_RANGE = 999;
@@ -74,9 +74,10 @@ public class Drivetrain extends Subsystem {
 	//Talons
 	Talon leftTalon1 = new Talon(Ports.PORT_DRIVETRAIN_TALON_LEFT_FRONT);
 	Talon leftTalon2 = new Talon(Ports.PORT_DRIVETRAIN_TALON_LEFT_BACK);
+	
 	Talon rightTalon1 = new Talon(Ports.PORT_DRIVETRAIN_TALON_RIGHT_FRONT);
 	Talon rightTalon2 = new Talon(Ports.PORT_DRIVETRAIN_TALON_RIGHT_BACK);
-
+	
 	//Sensors
 	Gyro gyroscope = new Gyro(Ports.PORT_GYROSCOPE);
 	
@@ -87,16 +88,14 @@ public class Drivetrain extends Subsystem {
 	//PID Controllers
 	PIDController leftGyroController1 = new PIDController(GYRO_PROPORTIONAL, GYRO_INTEGRAL, GYRO_DERIVATIVE, gyroscope, leftTalon1);
 	PIDController leftGyroController2 = new PIDController(GYRO_PROPORTIONAL, GYRO_INTEGRAL, GYRO_DERIVATIVE, gyroscope, leftTalon2);
-	PIDController rightGyroController1 = new PIDController(GYRO_PROPORTIONAL, GYRO_INTEGRAL, GYRO_DERIVATIVE, gyroscope, rightTalon1);
-	PIDController rightGyroController2 = new PIDController(GYRO_PROPORTIONAL, GYRO_INTEGRAL, GYRO_DERIVATIVE, gyroscope, rightTalon2);
+	PIDController rightGyroController1 = new PIDController(-GYRO_PROPORTIONAL, -GYRO_INTEGRAL, -GYRO_DERIVATIVE, gyroscope, rightTalon1);
+	PIDController rightGyroController2 = new PIDController(-GYRO_PROPORTIONAL, -GYRO_INTEGRAL, -GYRO_DERIVATIVE, gyroscope, rightTalon2);
 	
 	PIDController leftDriveController1 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, leftTalon1);
 	PIDController leftDriveController2 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, leftTalon2);
-	PIDController rightDriveController1 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, rightTalon1);
-	PIDController rightDriveController2 = new PIDController(DRIVE_PROPORTIONAL, DRIVE_INTEGRAL, DRIVE_DERIVATIVE, leftEncoder, rightTalon2);	
-	
+	PIDController rightDriveController1 = new PIDController(-DRIVE_PROPORTIONAL, -DRIVE_INTEGRAL, -DRIVE_DERIVATIVE, rightEncoder, rightTalon1);
+	PIDController rightDriveController2 = new PIDController(-DRIVE_PROPORTIONAL, -DRIVE_INTEGRAL, -DRIVE_DERIVATIVE, rightEncoder, rightTalon2);	
 	public Drivetrain() {
-		System.out.println("Drivetrain constructor called");
 		leftEncoder.setDistancePerPulse(LEFT_DPP);
 		rightEncoder.setDistancePerPulse(RIGHT_DPP);
 		leftEncoder.setMaxPeriod(ENCODER_MAX_PERIOD);
@@ -111,7 +110,7 @@ public class Drivetrain extends Subsystem {
 		rightDriveController2.setInputRange(-ENCODER_INPUT_RANGE, ENCODER_INPUT_RANGE);
 		rightDriveController1.setOutputRange(-ENCODER_DRIVE_OUTPUT_RANGE, ENCODER_DRIVE_OUTPUT_RANGE);
 		rightDriveController2.setOutputRange(-ENCODER_DRIVE_OUTPUT_RANGE, ENCODER_DRIVE_OUTPUT_RANGE);
-	
+		
 		leftGyroController1.setOutputRange(-ENCODER_GYRO_OUTPUT_RANGE, ENCODER_GYRO_OUTPUT_RANGE);
 		rightGyroController1.setOutputRange(-ENCODER_GYRO_OUTPUT_RANGE, ENCODER_GYRO_OUTPUT_RANGE);
 		leftGyroController2.setOutputRange(-ENCODER_GYRO_OUTPUT_RANGE, ENCODER_GYRO_OUTPUT_RANGE);
@@ -246,7 +245,7 @@ public class Drivetrain extends Subsystem {
 	 * Gets the maximum error of the drive PIDControllers
 	 * @return the error of the drive PIDControllers
 	 */
-	private double driveControllerError() {
+	public double driveControllerError() {
 		double maxLeftError = Math.max(leftDriveController1.getError(), leftDriveController2.getError());
 		double maxRightError = Math.max(rightDriveController1.getError(), rightDriveController2.getError());
 
@@ -256,7 +255,7 @@ public class Drivetrain extends Subsystem {
 	 * Gets the maximum error of the gyro PIDControllers
 	 * @return the error of the gyro PIDControllers
 	 */
-	private double gyroControllerError() {
+	public double gyroControllerError() {
 		double maxLeftError = Math.max(leftGyroController1.getError(), leftGyroController2.getError());
 		double maxRightError = Math.max(rightGyroController1.getError(), rightGyroController2.getError());
 

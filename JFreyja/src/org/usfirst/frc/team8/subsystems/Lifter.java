@@ -1,5 +1,6 @@
 package org.usfirst.frc.team8.subsystems;
 
+import org.usfirst.frc.team8.robot.Ports;
 import org.usfirst.frc.team8.subsystems.LifterHelper;
 import org.usfirst.frc.team8.subsystems.LifterHelper.State;
 
@@ -21,17 +22,26 @@ public class Lifter extends Subsystem {
 	public State state = State.IDLE;
 
 	/** Victors to drive the lifter */
-	public Victor victor1;
-	public Victor victor2;
+	public Victor victor1 = new Victor(Ports.PORT_LIFTER_VICTOR_1); //numbers are for ports
+	public Victor victor2 = new Victor(Ports.PORT_LIFTER_VICTOR_2);
 	
 	/** PID Components */
-	protected Encoder encoder;
-	protected PIDController controller1;
-	protected PIDController controller2;
+	protected Encoder encoder = new Encoder(Ports.PORT_LIFTER_ENCODER_A, Ports.PORT_LIFTER_ENCODER_B, false); //numbers are for ports
+	
+	protected PIDController controller1 = new PIDController(LifterHelper.PROPORTIONAL_CONSTANT, 
+															LifterHelper.INTEGRAL_CONSTANT, 
+															LifterHelper.DERIVATIVE_CONSTANT,
+															encoder, victor1);
+	
+	protected PIDController controller2 = new PIDController(LifterHelper.PROPORTIONAL_CONSTANT, 
+															LifterHelper.INTEGRAL_CONSTANT, 
+															LifterHelper.DERIVATIVE_CONSTANT,
+															encoder, victor2);
+	
 	
 	/** Hall effect sensors for the elevator */
-	protected DigitalInput topSensor;
-	protected DigitalInput bottomSensor;
+	protected DigitalInput topSensor = new DigitalInput(Ports.PORT_LIFTER_HALL_EFFECT_TOP); //numbers are for ports
+	protected DigitalInput bottomSensor = new DigitalInput(Ports.PORT_LIFTER_HALL_EFFECT_BOTTOM);
 	
 	/** Stores the current level */
 	double currentLevel;
@@ -93,12 +103,12 @@ public class Lifter extends Subsystem {
 		return (state == State.IDLE);
 	}
 	
-	private void setVelocity(double velocity) {
+	public void setVelocity(double velocity) {
 		double computedVelocity = Math.min(
 				Math.max(velocity * LifterHelper.SPEED_SCALING, -LifterHelper.MAX_SPEED),
 				LifterHelper.MAX_SPEED);
-		victor1.set(-computedVelocity);
-		victor2.set(-computedVelocity);
+		victor1.set(computedVelocity);
+		victor2.set(computedVelocity);
 		setState(State.TELEOP);
 	}
 	
@@ -112,16 +122,16 @@ public class Lifter extends Subsystem {
 		setState(State.AUTOMATED);
 	}
 	
-	private void liftLevel(double liftAmount) {
+	public void liftLevel(double liftAmount) {
 		double newLevel = currentLevel + liftAmount;
 		setLevel(newLevel);
 	}
 	
-	private void zero() {
+	public void zero() {
 		setLevel(0);
 	}
 	
-	private void resetZero() {
+	public void resetZero() {
 		encoder.reset();
 	}
 	

@@ -1,5 +1,9 @@
 package org.usfirst.frc.team8.controller;
 
-public class AutonomousController {
+import org.usfirst.frc.team8.robot.Robot;
 
+public class AutonomousController {
+	public AutonomousController(Robot robot) {
+		
+	}
 }
