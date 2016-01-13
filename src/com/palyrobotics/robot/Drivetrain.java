@@ -1,6 +1,7 @@
 package com.palyrobotics.robot;
 
 import org.strongback.components.AngleSensor;
+
 import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
 import org.strongback.control.SoftwarePIDController;
@@ -9,9 +10,20 @@ import org.strongback.drive.TankDrive;
 import org.strongback.hardware.Hardware;
 
 import java.util.function.*;
-import static com.palyrobotics.robot.Constants.Drivetrain.*;
 
 public class Drivetrain extends TankDrive {
+	//constants 
+	public static final int PID_TOLERANCE = 1;	
+	
+	//PID Variables
+	public static final double PULSES_PER_DEGREE_LEFT = 1;
+	public static final double PULSES_PER_DEGREE_RIGHT = 1;
+	
+	public static final double LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE = 0;
+	public static final double RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE = 0;
+	public static final double MIN_PID_INPUT = -1000;
+	public static final double MAX_PID_INPUT = 1000;
+	
 	//the joystick for input
 	private FlightStick turnStick;
 	private FlightStick driveStick;
@@ -24,7 +36,7 @@ public class Drivetrain extends TankDrive {
 //	private SoftwarePIDController leftController;
 	
 	private TalonController leftController = Hardware.Controllers.talonController(0, PULSES_PER_DEGREE_LEFT, LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
-	private TalonController rightController = Hardware.Controllers.talonController(0, PULSES_PER_DEGREE_RIGHT, RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
+	private TalonController rightController = Hardware.Controllers.talonController(1, PULSES_PER_DEGREE_RIGHT, RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
 	
 	//Encoders on the drivetrain talons
 	private AngleSensor leftEncoder;
