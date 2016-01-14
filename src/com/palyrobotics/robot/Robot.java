@@ -42,10 +42,12 @@ public class Robot extends IterativeRobot {
 	private Motor leftBackMotor = Hardware.Motors.talon(DRIVETRAIN_TALON_LEFT_BACK);
 	private Motor rightFrontMotor = Hardware.Motors.talon(DRIVETRAIN_TALON_RIGHT_FRONT);
 	private Motor rightBackMotor = Hardware.Motors.talon(DRIVETRAIN_TALON_RIGHT_BACK);
+	private Motor leftMidMotor = Hardware.Motors.talon(5);
+	private Motor rightMidMotor = Hardware.Motors.talon(6);
 	
 	//merging the motors on each side
-	private Motor left = Motor.compose(leftBackMotor, leftFrontMotor);
-	private Motor right = Motor.compose(rightBackMotor, rightFrontMotor);
+	private Motor left = Motor.compose(leftBackMotor, leftFrontMotor, leftMidMotor);
+	private Motor right = Motor.compose(rightBackMotor, rightFrontMotor, rightMidMotor);
 	
 	//encoders. numbers are 1st port, 2nd port, dpp
 	private AngleSensor leftEncoder = Hardware.AngleSensors.encoder(0, 1, 0);
@@ -69,7 +71,7 @@ public class Robot extends IterativeRobot {
         	Strongback.start();
         }
         catch(Throwable error){
-        	System.out.println("rip");
+        	System.err.println("rip" + error);
         }
     }
 
