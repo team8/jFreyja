@@ -23,9 +23,9 @@ public class Robot extends IterativeRobot {
 	
 	//constants
 	public static final int DRIVETRAIN_TALON_LEFT_FRONT = 3;
-	public static final int DRIVETRAIN_TALON_LEFT_BACK = 2;
+	public static final int DRIVETRAIN_TALON_LEFT_BACK = 0;
 	public static final int DRIVETRAIN_TALON_RIGHT_FRONT = 1;
-	public static final int DRIVETRAIN_TALON_RIGHT_BACK = 0;
+	public static final int DRIVETRAIN_TALON_RIGHT_BACK = 2;
 	
 	/** Laptop USB */
 	public static final int JOYSTICK_OPERATOR = 0;
@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 	//The joystick used
 	private FlightStick operatorStick = Hardware.HumanInterfaceDevices.logitechAttack3D(JOYSTICK_OPERATOR);
 	private FlightStick driveStick = Hardware.HumanInterfaceDevices.logitechAttack3D(JOYSTICK_DRIVE);
-	private FlightStick turnstick = Hardware.HumanInterfaceDevices.logitechAttack3D(JOYSTICK_TURN);
+	private FlightStick turnStick = Hardware.HumanInterfaceDevices.logitechAttack3D(JOYSTICK_TURN);
 	
 	//The motors, these are used in the drivetrain
 	private Motor leftFrontMotor = Hardware.Motors.talon(DRIVETRAIN_TALON_LEFT_FRONT);
@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
     	//passes the motors to be used to the drivetrain, along with a joystick
-    	drivetrain = new Drivetrain(turnstick, driveStick, left, right);
+    	drivetrain = new Drivetrain(driveStick, turnStick, left, right);
     	
     	//creates the syste that calls commands on button press
     	commandCaller = Strongback.switchReactor();

@@ -64,7 +64,14 @@ public class Drivetrain extends TankDrive {
 	
 	//uses cheesy drive(1 joystick forward/backward, 1 joystick turning) to drive
 	public void drive() {
-		this.cheesy(driveStick.getPitch().read(), turnStick.getYaw().read(), false);
+		this.cheesy(turnStick.getRoll().read(), -driveStick.getPitch().read(), true);
+		System.out.println("Drivestick pitch: " + driveStick.getPitch().read());
+		System.out.println("Drivestick yaw: " + driveStick.getYaw().read());
+		System.out.println("Drivestick roll: " + driveStick.getRoll().read());
+		
+		System.out.println("turnstick pitch: " + turnStick.getPitch().read());
+		System.out.println("turnstick yaw: " + turnStick.getYaw().read());
+		System.out.println("turnstick roll: " + turnStick.getRoll().read());
 	}
 	
 	public Motor getLeftMotor() {
