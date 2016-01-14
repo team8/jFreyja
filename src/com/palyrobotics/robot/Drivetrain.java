@@ -35,8 +35,8 @@ public class Drivetrain extends TankDrive {
 	//PIDController to be activated by commands when needed
 //	private SoftwarePIDController leftController;
 	
-	private TalonController leftController = Hardware.Controllers.talonController(0, PULSES_PER_DEGREE_LEFT, LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
-	private TalonController rightController = Hardware.Controllers.talonController(1, PULSES_PER_DEGREE_RIGHT, RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
+//	private TalonController leftController = Hardware.Controllers.talonController(2, PULSES_PER_DEGREE_LEFT, LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
+//	private TalonController rightController = Hardware.Controllers.talonController(0, PULSES_PER_DEGREE_RIGHT, RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
 	
 	//Encoders on the drivetrain talons
 	private AngleSensor leftEncoder;
@@ -50,16 +50,16 @@ public class Drivetrain extends TankDrive {
 		this.turnStick = turnStick;
 		this.driveStick = driveStick;
 		
-//		this.leftController = new SoftwarePIDController(() -> leftEncoder.getAngle(), (leftEncoder.getAngle()) -> left.setSpeed());
+		//this.leftController = new SoftwarePIDController(() -> leftEncoder.getAngle(), (leftEncoder.getAngle()) -> left.setSpeed());
 		//this.leftController.withInputRange(MIN_PID_INPUT, MAX_PID_INPUT).withTolerance(PID_TOLERANCE);
-		leftController.withGains(.1, 0, .1);
-		rightController.withGains(.1, 0, .1);
+//		leftController.withGains(.1, 0, .1);
+//		rightController.withGains(.1, 0, .1);
 	}
 	
 	public void driveDist(double dist) {
 		//in angles, will convert to distances later
-		leftController.withTarget(dist);
-		rightController.withTarget(dist);
+//		leftController.withTarget(dist);
+//		rightController.withTarget(dist);
 	}
 	
 	//uses cheesy drive(1 joystick forward/backward, 1 joystick turning) to drive

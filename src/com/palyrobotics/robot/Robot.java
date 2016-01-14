@@ -65,14 +65,19 @@ public class Robot extends IterativeRobot {
     @Override
     public void teleopInit() {
         // Start Strongback functions ...
-        Strongback.start();
+        try{
+        	Strongback.start();
+        }
+        catch(Throwable error){
+        	System.out.println("rip");
+        }
     }
 
     @Override
     public void teleopPeriodic() {
     	
     	//when operator trigger pressed, call drivedist with distance 10 and tolerance 1
-    	commandCaller.onTriggered(operatorStick.getTrigger(),()->Strongback.submit(new DriveDist(drivetrain, leftEncoder, rightEncoder, 10, 1)));
+    	//commandCaller.onTriggered(operatorStick.getTrigger(),()->Strongback.submit(new DriveDist(drivetrain, leftEncoder, rightEncoder, 10, 1)));
     	System.out.println("driving dist");
     	//constantly drives the robot according to joystick input
     	drivetrain.drive();
