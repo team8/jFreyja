@@ -5,6 +5,7 @@ import org.strongback.Strongback;
 
 import org.strongback.SwitchReactor;
 import org.strongback.components.AngleSensor;
+import org.strongback.components.DistanceSensor;
 import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
 import org.strongback.hardware.Hardware;
@@ -50,8 +51,10 @@ public class Robot extends IterativeRobot {
 	private Motor right = Motor.compose(rightBackMotor, rightFrontMotor, rightMidMotor);
 	
 	//encoders. numbers are 1st port, 2nd port, dpp
-	private AngleSensor leftEncoder = Hardware.AngleSensors.encoder(0, 1, 0);
-	private AngleSensor rightEncoder = Hardware.AngleSensors.encoder(2, 3, 0);
+	private AngleSensor leftEncoder = Hardware.AngleSensors.encoder(0, 1, .1);
+	private AngleSensor rightEncoder = Hardware.AngleSensors.encoder(2, 3, .1);
+	
+	//private AngleSensor testEncoder = Hardware.AngleSensors.encoder(0, 4, 12);
 	
 	private SwitchReactor commandCaller;
 	
@@ -69,6 +72,7 @@ public class Robot extends IterativeRobot {
         // Start Strongback functions ...
         try{
         	Strongback.start();
+        	Strongback.submit(new DriveDist(drivetrain, leftEncoder, rightEncoder, 1000, 1));
         }
         catch(Throwable error){
         	System.err.println("rip" + error);
@@ -77,20 +81,22 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopPeriodic() {
-    	
+    	System.out.println("encoder output: " + leftEncoder.getAngle());
     	//when operator trigger pressed, call drivedist with distance 10 and tolerance 1
-    	//commandCaller.onTriggered(operatorStick.getTrigger(),()->Strongback.submit(new DriveDist(drivetrain, leftEncoder, rightEncoder, 10, 1)));
-    	System.out.println("driving dist");
+    	commandCaller.onTriggered(operatorStick.getButton(8),()->Strongback.submit(new DriveDist(drivetrain, leftEncoder, rightEncoder, 1000, 1)));
     	//constantly drives the robot according to joystick input
-    	drivetrain.drive();
-    	System.out.println("driving");
-    	
+    	drivetrain.drive();  	
     }
 
     @Override
     public void disabledInit() {
         // Tell Strongback that the robot is disabled so it can flush and kill commands.
         Strongback.disable();
+    }
+    
+    @Override
+    public void disabledPeriodic() {
+    	
     }
 
 }

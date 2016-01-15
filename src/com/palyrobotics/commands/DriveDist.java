@@ -2,6 +2,7 @@ package com.palyrobotics.commands;
 
 import org.strongback.command.Command;
 import org.strongback.components.AngleSensor;
+import org.strongback.components.DistanceSensor;
 import org.strongback.control.SoftwarePIDController;
 import org.strongback.hardware.Hardware;
 
@@ -27,6 +28,6 @@ public class DriveDist extends Command {
 	@Override
 	public boolean execute() {
 		drivetrain.driveDist(targetDistance);
-		return false;
+		return drivetrain.hasArrived();
 	}
 }
