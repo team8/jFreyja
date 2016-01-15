@@ -2,10 +2,7 @@ package com.palyrobotics.commands;
 
 import org.strongback.command.Command;
 import org.strongback.components.AngleSensor;
-import org.strongback.components.DistanceSensor;
 import org.strongback.control.SoftwarePIDController;
-import org.strongback.hardware.Hardware;
-
 import com.palyrobotics.robot.Drivetrain;
 
 public class DriveDist extends Command {

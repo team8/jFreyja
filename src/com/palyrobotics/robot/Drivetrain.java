@@ -1,15 +1,10 @@
 package com.palyrobotics.robot;
 
-import org.strongback.components.AngleSensor;
-import org.strongback.components.DistanceSensor;
 import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
-import org.strongback.control.SoftwarePIDController;
 import org.strongback.control.TalonController;
 import org.strongback.drive.TankDrive;
 import org.strongback.hardware.Hardware;
-
-import java.util.function.*;
 
 public class Drivetrain extends TankDrive {
 	//constants 
