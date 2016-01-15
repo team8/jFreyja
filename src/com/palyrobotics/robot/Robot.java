@@ -5,6 +5,7 @@ import org.strongback.Strongback;
 
 import org.strongback.SwitchReactor;
 import org.strongback.components.AngleSensor;
+import org.strongback.components.DistanceSensor;
 import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
 import org.strongback.hardware.Hardware;
@@ -14,23 +15,12 @@ import com.palyrobotics.commands.DriveDist;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
-//import static com.palyrobotics.robot.*;
+import static com.palyrobotics.robot.Constants.Ports.*;
 
 public class Robot extends IterativeRobot {
 
 	//The drivetrain used
 	private Drivetrain drivetrain;
-	
-	//constants
-	public static final int DRIVETRAIN_TALON_LEFT_FRONT = 3;
-	public static final int DRIVETRAIN_TALON_LEFT_BACK = 0;
-	public static final int DRIVETRAIN_TALON_RIGHT_FRONT = 1;
-	public static final int DRIVETRAIN_TALON_RIGHT_BACK = 2;
-	
-	/** Laptop USB */
-	public static final int JOYSTICK_OPERATOR = 0;
-	public static final int JOYSTICK_DRIVE = 1;
-	public static final int JOYSTICK_TURN = 2;
 	
 	//The joystick used
 	private FlightStick operatorStick = Hardware.HumanInterfaceDevices.logitechAttack3D(JOYSTICK_OPERATOR);
