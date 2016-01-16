@@ -41,11 +41,11 @@ public class DrivetrainTest {
 		Motor m2 = null;
 		thrown.expect(UnsatisfiedLinkError.class);
 		
-		d = new Drivetrain(f1,f2,m1,m2);
+		 d = new Drivetrain(m1,m2);
 	}
 
 	@Test
 	public void test() {
-		d = new Drivetrain(f1,f2,m1,m2);
+		d = new Drivetrain(m1,m2);
 	}
 }

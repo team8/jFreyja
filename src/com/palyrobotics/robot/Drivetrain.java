@@ -29,7 +29,7 @@ public class Drivetrain extends TankDrive {
 	
 	private ThreeAxisAccelerometer test = Hardware.Accelerometers.builtIn();
 	
-	public Drivetrain(FlightStick driveStick, FlightStick turnStick, Motor left, Motor right) {
+	public Drivetrain(Motor left, Motor right) {
 		//calls superclass constructor, creating a tankdrive with 2 motors
 		super(left, right);
 		this.left = left;

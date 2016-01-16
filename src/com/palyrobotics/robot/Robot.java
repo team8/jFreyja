@@ -10,6 +10,7 @@ import org.strongback.components.ui.FlightStick;
 import org.strongback.hardware.Hardware;
 
 import com.palyrobotics.commands.DriveDist;
+import com.palyrobotics.commands.ForwardThenBack;
 import com.palyrobotics.commands.KeepDriving;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -45,8 +46,16 @@ public class Robot extends IterativeRobot {
 	
     @Override
     public void robotInit() {
+    	try {
+    		Strongback.start();
+    	}
+    	
+    	catch(Throwable thrown) {
+    		System.err.println("Error: " + thrown);
+    	}
+    	
     	//passes the motors to be used to the drivetrain, along with a joystick
-    	drivetrain = new Drivetrain(driveStick, turnStick, left, right);
+    	drivetrain = new Drivetrain(left, right);
     	
     	//creates the syste that calls commands on button press
     	commandCaller = Strongback.switchReactor();
@@ -54,19 +63,12 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
-        // Start Strongback functions ...
-        try{
-        	Strongback.start();
-        	//Strongback.submit(new DriveDist(drivetrain, leftEncoder, rightEncoder, 1000, 1));
-        	//Strongback.submit(new KeepDriving(drivetrain));
-        }
-        catch(Throwable error){
-        	System.err.println("rip" + error);
-        }
+
     }
 
     @Override
     public void teleopPeriodic() {
+    	
     	//System.out.println("encoder output: " + leftEncoder.getAngle());
     	
     	//when operator trigger pressed, call drivedist with distance 10 and tolerance 1
@@ -84,6 +86,16 @@ public class Robot extends IterativeRobot {
     
     @Override
     public void disabledPeriodic() {
+    	
+    }
+    
+    @Override
+    public void autonomousInit() {
+    	Strongback.submit(new ForwardThenBack(drivetrain));
+    }
+    
+    @Override
+    public void autonomousPeriodic() {
     	
     }
     

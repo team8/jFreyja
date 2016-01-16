@@ -14,11 +14,11 @@ public class KeepDriving extends Command {
 	
 	@Override
 	public boolean execute() {
-		System.out.println("---------------------------------------------------------------------------");
+		System.out.println("-------------DRIVING FORWARD------------------------");
 		double begin = System.currentTimeMillis();
 		
 		while(System.currentTimeMillis() - begin < 1000) {
-			System.out.println("COMMAND RUNNING YAYAYAYAYAYAYAYA");
+			drivetrain.drive(.1, 0);
 		}
 		return true;
 	}
