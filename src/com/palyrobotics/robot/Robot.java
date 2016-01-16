@@ -1,21 +1,17 @@
 /* Created Tue Dec 01 14:35:41 PST 2015 */
 package com.palyrobotics.robot;
 
+import static com.palyrobotics.robot.Constants.Ports.*;
 import org.strongback.Strongback;
-
 import org.strongback.SwitchReactor;
 import org.strongback.components.AngleSensor;
 import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
 import org.strongback.hardware.Hardware;
 
-import com.palyrobotics.robot.Drivetrain;
 import com.palyrobotics.commands.DriveDist;
-import com.palyrobotics.commands.KeepDriving;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-
-import static com.palyrobotics.robot.Constants.Ports.*;
 
 public class Robot extends IterativeRobot {
 
@@ -60,7 +56,7 @@ public class Robot extends IterativeRobot {
         try{
         	Strongback.start();
         	//Strongback.submit(new DriveDist(drivetrain, leftEncoder, rightEncoder, 1000, 1));
-        	Strongback.submit(new KeepDriving(drivetrain));
+        	//Strongback.submit(new KeepDriving(drivetrain));
         }
         catch(Throwable error){
         	System.err.println("rip" + error);
@@ -75,7 +71,7 @@ public class Robot extends IterativeRobot {
     	commandCaller.onTriggered(operatorStick.getButton(8),()->Strongback.submit(new DriveDist(drivetrain, leftEncoder, rightEncoder, 1000, 1)));
     
     	//constantly drives the robot according to joystick input
-    	drivetrain.drive(turnStick.getRoll().read(), -driveStick.getPitch().read());  	
+    	drivetrain.drive(-driveStick.getPitch().read(), turnStick.getRoll().read());  	
     }
 
     @Override

@@ -15,7 +15,7 @@ public class KeepDriving extends Command {
 	@Override
 	public boolean execute() {
 		
-		drivetrain.cheesy(0, .3, true);
+		drivetrain.drive(.3, 0);
 		
 		return false;
 	}

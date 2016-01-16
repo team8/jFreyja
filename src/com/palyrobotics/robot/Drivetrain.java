@@ -1,6 +1,5 @@
 package com.palyrobotics.robot;
 
-import org.strongback.components.Accelerometer;
 import org.strongback.components.Motor;
 import org.strongback.components.ThreeAxisAccelerometer;
 import org.strongback.components.ui.FlightStick;
@@ -52,7 +51,7 @@ public class Drivetrain extends TankDrive {
 	
 	//uses cheesy drive(1 joystick forward/backward, 1 joystick turning) to drive
 	public void drive(double forward, double turn) {
-		this.cheesy(forward, turn, true);
+		this.cheesy(turn, forward, true);
 		System.out.println("x: " + test.getXDirection());
 		System.out.println("y: " + test.getYDirection());
 		System.out.println("z: " + test.getZDirection());
