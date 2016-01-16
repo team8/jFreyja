@@ -5,7 +5,6 @@ import org.strongback.Strongback;
 
 import org.strongback.SwitchReactor;
 import org.strongback.components.AngleSensor;
-import org.strongback.components.DistanceSensor;
 import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
 import org.strongback.hardware.Hardware;
