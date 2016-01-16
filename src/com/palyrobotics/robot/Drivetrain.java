@@ -21,9 +21,9 @@ public class Drivetrain extends TankDrive {
 	private TalonController leftController;
 	private TalonController rightController;
 	
-	private ThreeAxisAccelerometer test = Hardware.Accelerometers.builtIn();
+//	private ThreeAxisAccelerometer test = Hardware.Accelerometers.builtIn();
 	
-	public Drivetrain(Motor left, Motor right, TalonController leftController, TalonController rightController) {
+	public Drivetrain(Motor left, Motor right, TalonController leftcontroller, TalonController rightcontroller) {
 		//calls superclass constructor, creating a tankdrive with 2 motors
 		super(left, right);
 		this.left = left;
