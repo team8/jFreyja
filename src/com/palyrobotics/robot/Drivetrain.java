@@ -10,13 +10,7 @@ import org.strongback.hardware.Hardware;
 public class Drivetrain extends TankDrive {
 	//constants 
 	public static final int PID_TOLERANCE = 1;	
-	
-	//PID Variables
-	public static final double PULSES_PER_DEGREE_LEFT = 1;
-	public static final double PULSES_PER_DEGREE_RIGHT = 1;
-	
-	public static final double LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE = 0;
-	public static final double RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE = 0;
+
 	public static final double MIN_PID_INPUT = -1000;
 	public static final double MAX_PID_INPUT = 1000;
 
@@ -24,17 +18,20 @@ public class Drivetrain extends TankDrive {
 	private Motor left;
 	private Motor right;
 
-	private TalonController leftController = Hardware.Controllers.talonController(2, PULSES_PER_DEGREE_LEFT, LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
-	private TalonController rightController = Hardware.Controllers.talonController(0, PULSES_PER_DEGREE_RIGHT, RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
+	private TalonController leftController;
+	private TalonController rightController;
 	
 	private ThreeAxisAccelerometer test = Hardware.Accelerometers.builtIn();
 	
-	public Drivetrain(Motor left, Motor right) {
+	public Drivetrain(Motor left, Motor right, TalonController leftController, TalonController rightController) {
 		//calls superclass constructor, creating a tankdrive with 2 motors
 		super(left, right);
 		this.left = left;
 		this.right = right;
 
+		this.leftController = leftController;
+		this.rightController = rightController;
+		
 		leftController.withGains(.1, 0, .1);
 		rightController.withGains(.1, 0, .1);
 	}

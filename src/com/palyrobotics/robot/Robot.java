@@ -7,6 +7,7 @@ import org.strongback.SwitchReactor;
 import org.strongback.components.AngleSensor;
 import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
+import org.strongback.control.TalonController;
 import org.strongback.hardware.Hardware;
 
 import com.palyrobotics.commands.DriveDist;
@@ -17,6 +18,13 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class Robot extends IterativeRobot {
 
+	//PID Variables
+	public static final double PULSES_PER_DEGREE_LEFT = 1;
+	public static final double PULSES_PER_DEGREE_RIGHT = 1;
+	
+	public static final double LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE = 0;
+	public static final double RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE = 0;
+	
 	//The drivetrain used
 	private Drivetrain drivetrain;
 	
@@ -33,6 +41,9 @@ public class Robot extends IterativeRobot {
 	private Motor rightFrontMotor = Hardware.Motors.talon(DRIVETRAIN_TALON_RIGHT_FRONT);
 	private Motor rightBackMotor = Hardware.Motors.talon(DRIVETRAIN_TALON_RIGHT_BACK);
 	private Motor rightMidMotor = Hardware.Motors.talon(DRIVETRAIN_TALON_RIGHT_MID);
+	
+	private TalonController leftController = Hardware.Controllers.talonController(2, PULSES_PER_DEGREE_LEFT, LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
+	private TalonController rightController = Hardware.Controllers.talonController(0, PULSES_PER_DEGREE_RIGHT, RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
 	
 	//merging the motors on each side
 	private Motor left = Motor.compose(leftBackMotor, leftFrontMotor, leftMidMotor);
@@ -55,7 +66,7 @@ public class Robot extends IterativeRobot {
     	}
     	
     	//passes the motors to be used to the drivetrain, along with a joystick
-    	drivetrain = new Drivetrain(left, right);
+    	drivetrain = new Drivetrain(left, right, leftController, rightController);
     	
     	//creates the syste that calls commands on button press
     	commandCaller = Strongback.switchReactor();

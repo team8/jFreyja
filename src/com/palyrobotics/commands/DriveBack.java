@@ -18,7 +18,7 @@ public class DriveBack extends Command{
 		double begin = System.currentTimeMillis();
 		
 		while(System.currentTimeMillis() - begin < 1000) {
-			drivetrain.drive(.1, 0);
+			drivetrain.drive(-.1, 0);
 		}
 		return true;
 	}
