@@ -1,6 +1,10 @@
-#Only allow Strongback/WPI build.xml #
+# Only allow Strongback/WPI build.xml #
 *.xml
 !build.xml
+
+# Unwanted Java files #
+*.class
+*.jar
 
 # Eclipse specific #
 */.settings/
