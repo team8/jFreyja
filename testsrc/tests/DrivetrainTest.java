@@ -2,11 +2,12 @@ package tests;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.strongback.components.*;
-import org.strongback.components.ui.*;
+import org.strongback.components.ui.FlightStick;
 
 import com.palyrobotics.robot.Drivetrain;
 
