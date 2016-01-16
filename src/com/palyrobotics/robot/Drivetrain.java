@@ -1,6 +1,8 @@
 package com.palyrobotics.robot;
 
+import org.strongback.components.Accelerometer;
 import org.strongback.components.Motor;
+import org.strongback.components.ThreeAxisAccelerometer;
 import org.strongback.components.ui.FlightStick;
 import org.strongback.control.TalonController;
 import org.strongback.drive.TankDrive;
@@ -18,37 +20,22 @@ public class Drivetrain extends TankDrive {
 	public static final double RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE = 0;
 	public static final double MIN_PID_INPUT = -1000;
 	public static final double MAX_PID_INPUT = 1000;
-	
-	//the joystick for input
-	private FlightStick turnStick;
-	private FlightStick driveStick;
-	
+
 	//the motors of this drivetrain
 	private Motor left;
 	private Motor right;
-	
-	//PIDController to be activated by commands when needed
-//	private SoftwarePIDController leftController;
-	
+
 	private TalonController leftController = Hardware.Controllers.talonController(2, PULSES_PER_DEGREE_LEFT, LEFT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
 	private TalonController rightController = Hardware.Controllers.talonController(0, PULSES_PER_DEGREE_RIGHT, RIGHT_ANALOG_TURNS_OVER_VOLTAGE_RANGE);
 	
-	//Encoders on the drivetrain talons
-//	private DistanceSensor leftEncoder;
-//	private DistanceSensor rightEncoder;
-	
-	
+	private ThreeAxisAccelerometer test = Hardware.Accelerometers.builtIn();
 	
 	public Drivetrain(FlightStick driveStick, FlightStick turnStick, Motor left, Motor right) {
 		//calls superclass constructor, creating a tankdrive with 2 motors
 		super(left, right);
 		this.left = left;
 		this.right = right;
-		this.turnStick = turnStick;
-		this.driveStick = driveStick;
-		
-		//this.leftController = new SoftwarePIDController(() -> leftEncoder.getAngle(), (leftEncoder.getAngle()) -> left.setSpeed());
-		//this.leftController.withInputRange(MIN_PID_INPUT, MAX_PID_INPUT).withTolerance(PID_TOLERANCE);
+
 		leftController.withGains(.1, 0, .1);
 		rightController.withGains(.1, 0, .1);
 	}
@@ -64,8 +51,11 @@ public class Drivetrain extends TankDrive {
 	}
 	
 	//uses cheesy drive(1 joystick forward/backward, 1 joystick turning) to drive
-	public void drive() {
-		this.cheesy(turnStick.getRoll().read(), -driveStick.getPitch().read(), true);
+	public void drive(double forward, double turn) {
+		this.cheesy(forward, turn, true);
+		System.out.println("x: " + test.getXDirection());
+		System.out.println("y: " + test.getYDirection());
+		System.out.println("z: " + test.getZDirection());
 		
 //		System.out.println("Drivestick pitch: " + driveStick.getPitch().read());
 //		System.out.println("Drivestick yaw: " + driveStick.getYaw().read());
@@ -82,14 +72,6 @@ public class Drivetrain extends TankDrive {
 	
 	public Motor getRightMotor() {
 		return right;
-	}
-	
-	public FlightStick getTurnStick() {
-		return turnStick;
-	}
-	
-	public FlightStick getDriveStick() {
-		return driveStick;
 	}
 
 }
