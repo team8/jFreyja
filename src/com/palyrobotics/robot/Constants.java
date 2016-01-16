@@ -16,9 +16,11 @@ public class Constants {
 	class Ports {
 		/** Pulse Width Modulation */
 		public static final int DRIVETRAIN_TALON_LEFT_FRONT = 3;
-		public static final int DRIVETRAIN_TALON_LEFT_BACK = 2;
+		public static final int DRIVETRAIN_TALON_LEFT_BACK = 0;
+		public static final int DRIVETRAIN_TALON_LEFT_MID = 5;
 		public static final int DRIVETRAIN_TALON_RIGHT_FRONT = 1;
-		public static final int DRIVETRAIN_TALON_RIGHT_BACK = 0;
+		public static final int DRIVETRAIN_TALON_RIGHT_BACK = 2;
+		public static final int DRIVETRAIN_TALON_RIGHT_MID = 6;
 		
 		/** Laptop USB */
 		public static final int JOYSTICK_OPERATOR = 0;
