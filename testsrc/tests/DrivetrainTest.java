@@ -1,5 +1,7 @@
 package tests;
 
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,11 +41,14 @@ public class DrivetrainTest {
 	public void testInvalidDTMotors() {
 		thrown.expect(NullPointerException.class);
 		
-		 d = new Drivetrain(null, null, null, null);
+		 d = new Drivetrain(null, null);
+		 d.drive(1,2);
 	}
 
 	@Test
 	public void test() {
-	//	d = new Drivetrain(m1,m2, t1, t2);
+		d = new Drivetrain(m1,m2);
+		
+		assertTrue(d.getLeftMotor().equals(m1));
 	}
 }

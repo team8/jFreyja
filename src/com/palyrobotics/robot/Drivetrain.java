@@ -23,7 +23,7 @@ public class Drivetrain extends TankDrive {
 	
 //	private ThreeAxisAccelerometer test = Hardware.Accelerometers.builtIn();
 	
-	public Drivetrain(Motor left, Motor right, TalonController leftcontroller, TalonController rightcontroller) {
+	public Drivetrain(Motor left, Motor right) {
 		//calls superclass constructor, creating a tankdrive with 2 motors
 		super(left, right);
 		this.left = left;
@@ -32,8 +32,8 @@ public class Drivetrain extends TankDrive {
 		this.leftController = leftController;
 		this.rightController = rightController;
 		
-		leftController.withGains(.1, 0, .1);
-		rightController.withGains(.1, 0, .1);
+		//leftController.withGains(.1, 0, .1);
+		//rightController.withGains(.1, 0, .1);
 	}
 	
 	public boolean hasArrived() {

@@ -66,7 +66,7 @@ public class Robot extends IterativeRobot {
     	}
     	
     	//passes the motors to be used to the drivetrain, along with a joystick
-    	drivetrain = new Drivetrain(left, right, leftController, rightController);
+    	drivetrain = new Drivetrain(left, right);
     	
     	//creates the syste that calls commands on button press
     	commandCaller = Strongback.switchReactor();
