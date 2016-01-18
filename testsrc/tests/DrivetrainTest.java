@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TestRule;
 import org.junit.rules.Timeout;
@@ -45,6 +46,7 @@ public class DrivetrainTest {
 		 d.drive(1,2);
 	}
 
+	@Category(FastTests.class)
 	@Test
 	public void test() {
 		d = new Drivetrain(m1,m2);
