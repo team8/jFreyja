@@ -16,8 +16,6 @@
 *.txt
 .metadata/*
 /bin
-.classpath
-
 */Debug/
 
 # IntelliJ specific #
