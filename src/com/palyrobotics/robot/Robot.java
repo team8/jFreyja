@@ -9,6 +9,7 @@ import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
 import org.strongback.control.TalonController;
 import org.strongback.hardware.Hardware;
+import org.strongback.Logger;
 
 import com.palyrobotics.commands.DriveDist;
 import com.palyrobotics.commands.ForwardThenBack;
@@ -57,12 +58,15 @@ public class Robot extends IterativeRobot {
 	
     @Override
     public void robotInit() {
+        Strongback.configure()
+        .useSystemLogger(Logger.Level.DEBUG)
+        .initialize();
     	try {
     		Strongback.start();
     	}
     	
     	catch(Throwable thrown) {
-    		System.err.println("Error: " + thrown);
+    	    Strongback.logger().error(thrown,"Could not start Strongback");
     	}
     	
     	//passes the motors to be used to the drivetrain, along with a joystick
