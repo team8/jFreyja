@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
 	private AngleSensor rightEncoder = Hardware.AngleSensors.encoder(2, 3, .1);
 
 	//potentiometers
-	private DistanceSensor potTest = Hardware.DistanceSensors.potentiometer(0, 10);
+	private DistanceSensor potTest = Hardware.DistanceSensors.potentiometer(1, 10);
 	
 	private SwitchReactor commandCaller;
 	
@@ -95,8 +95,9 @@ public class Robot extends IterativeRobot {
     	//commandCaller.onTriggered(operatorStick.getButton(8),()->Strongback.submit(new KeepDriving(drivetrain)));
     	//Strongback.submit(new KeepDriving(drivetrain));
     	//constantly drives the robot according to joystick input
-    	drivetrain.drive(-driveStick.getPitch().read(), turnStick.getRoll().read());  
-    	System.out.println(potTest.getDistanceInInches());
+//    	drivetrain.drive(-driveStick.getPitch().read(), turnStick.getRoll().read());  
+    	System.out.println("hi");
+    	System.out.println("potentiometer" + potTest.getDistanceInInches());
     }
 
     @Override
@@ -124,18 +125,18 @@ public class Robot extends IterativeRobot {
      * Prints out joystick buttons when pressed
      */
     private void joystickTest() {
-    	commandCaller.onTriggered(operatorStick.getButton(1), () -> System.out.println("Operator 1"));
-    	commandCaller.onTriggered(operatorStick.getButton(2), () -> System.out.println("Operator 2"));
-    	commandCaller.onTriggered(operatorStick.getButton(3), () -> System.out.println("Operator 3"));
-    	commandCaller.onTriggered(operatorStick.getButton(4), () -> System.out.println("Operator 4"));
-    	commandCaller.onTriggered(operatorStick.getButton(5), () -> System.out.println("Operator 5"));
-    	commandCaller.onTriggered(operatorStick.getButton(6), () -> System.out.println("Operator 6"));
-    	commandCaller.onTriggered(operatorStick.getButton(7), () -> System.out.println("Operator 7"));
-    	commandCaller.onTriggered(operatorStick.getButton(8), () -> System.out.println("Operator 8"));
-    	commandCaller.onTriggered(operatorStick.getButton(9), () -> System.out.println("Operator 9"));
-    	commandCaller.onTriggered(operatorStick.getButton(10), () -> System.out.println("Operator 10"));
-    	commandCaller.onTriggered(operatorStick.getButton(11), () -> System.out.println("Operator 11"));
-    	commandCaller.onTriggered(operatorStick.getButton(12), () -> System.out.println("Operator 12"));
+//    	commandCaller.onTriggered(operatorStick.getButton(1), () -> System.out.println("Operator 1"));
+//    	commandCaller.onTriggered(operatorStick.getButton(2), () -> System.out.println("Operator 2"));
+//    	commandCaller.onTriggered(operatorStick.getButton(3), () -> System.out.println("Operator 3"));
+//    	commandCaller.onTriggered(operatorStick.getButton(4), () -> System.out.println("Operator 4"));
+//    	commandCaller.onTriggered(operatorStick.getButton(5), () -> System.out.println("Operator 5"));
+//    	commandCaller.onTriggered(operatorStick.getButton(6), () -> System.out.println("Operator 6"));
+//    	commandCaller.onTriggered(operatorStick.getButton(7), () -> System.out.println("Operator 7"));
+//    	commandCaller.onTriggered(operatorStick.getButton(8), () -> System.out.println("Operator 8"));
+//    	commandCaller.onTriggered(operatorStick.getButton(9), () -> System.out.println("Operator 9"));
+//    	commandCaller.onTriggered(operatorStick.getButton(10), () -> System.out.println("Operator 10"));
+//    	commandCaller.onTriggered(operatorStick.getButton(11), () -> System.out.println("Operator 11"));
+//    	commandCaller.onTriggered(operatorStick.getButton(12), () -> System.out.println("Operator 12"));
     	
     }
 }
