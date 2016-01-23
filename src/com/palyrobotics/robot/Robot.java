@@ -6,7 +6,6 @@ import static com.palyrobotics.robot.Constants.Ports.*;
 import org.strongback.Strongback;
 import org.strongback.SwitchReactor;
 import org.strongback.components.AngleSensor;
-import org.strongback.components.DistanceSensor;
 import org.strongback.components.Motor;
 import org.strongback.components.ui.FlightStick;
 import org.strongback.control.TalonController;
@@ -57,7 +56,7 @@ public class Robot extends IterativeRobot {
 	private AngleSensor rightEncoder = Hardware.AngleSensors.encoder(2, 3, .1);
 
 	//potentiometers
-	private DistanceSensor potTest = Hardware.DistanceSensors.potentiometer(1, 10);
+	private AngleSensor potTest = Hardware.AngleSensors.potentiometer(1, 10);
 	
 	private SwitchReactor commandCaller;
 	
@@ -97,7 +96,7 @@ public class Robot extends IterativeRobot {
     	//constantly drives the robot according to joystick input
 //    	drivetrain.drive(-driveStick.getPitch().read(), turnStick.getRoll().read());  
     	System.out.println("hi");
-    	System.out.println("potentiometer" + potTest.getDistanceInInches());
+    	System.out.println("potentiometer" + potTest.getAngle());
     }
 
     @Override
